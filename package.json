@@ -1,5 +1,5 @@
 {
-  "name": "serverless-plugin-typescript",
+  "name": "@nody-org/serverless-plugin-typescript",
   "version": "2.1.1",
   "license": "MIT",
   "main": "dist/src/index.js",
@@ -41,7 +41,7 @@
       }
     ]
   },
-  "repository": "serverless/serverless-plugin-typescript",
+  "repository": "GuilhermeCunha/serverless-plugin-typescript",
   "keywords": [
     "serverless",
     "serverless plugin",
