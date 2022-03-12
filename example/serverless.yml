@@ -1,16 +1,25 @@
 service: serverless-example
 
 plugins:
-  - serverless-plugin-typescript
+  - ../dist/src/index.js
+  - serverless-offline
+package:
+  individually: true
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs14.x
 
 functions:
   hello:
-    handler: handler.hello
+    handler: src/handlers/hello.default
     events:
       - http:
           path: hello
+          method: get
+  world:
+    handler: src/handlers/world.default
+    events:
+      - http:
+          path: world
           method: get
