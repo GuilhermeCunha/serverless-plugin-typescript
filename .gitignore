@@ -4,3 +4,6 @@ node_modules
 .serverless
 dist
 *.log
+.build
+yarn.lock
+package-lock.json
