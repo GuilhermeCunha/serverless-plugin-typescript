@@ -8,7 +8,6 @@ import { watchFiles } from './watchFiles'
 
 const SERVERLESS_FOLDER = '.serverless'
 const BUILD_FOLDER = '.build'
-const DEFAULT_PACKAGE_MANAGER = 'npm'
 
 export class TypeScriptPlugin {
   private originalServicePath: string
@@ -229,19 +228,22 @@ export class TypeScriptPlugin {
     }
   }
 
-  getPackageManager() {
+  installProductionDependencies(cwd: string): void  {
     const { packageManager } = JSON.parse(
       fs.readFileSync(path.resolve('package.json'), 'utf8'),
     )
     if ((packageManager && packageManager.includes('yarn')) || fs.existsSync(path.resolve('yarn.lock'))) {
-      return 'yarn'
+      this.serverless.cli.log(
+        `Installing production dependencies using yarn...`
+      )
+      execSync(`yarn install --production --modules-folder ${path.join(BUILD_FOLDER, 'node_modules')}`)
+      return
     }
 
-    if ((packageManager && packageManager.includes('npm')) || fs.existsSync(path.resolve('package-lock.json'))) {
-      return 'npm'
-    }
-
-    return DEFAULT_PACKAGE_MANAGER
+    this.serverless.cli.log(
+      `Installing production dependencies using npm...`
+    )
+    execSync(`npm install --production`, {cwd: BUILD_FOLDER })
   }
 
   /**
@@ -266,11 +268,7 @@ export class TypeScriptPlugin {
         fs.unlinkSync(outModulesPath)
       }
 
-      const packageManager = this.getPackageManager()
-      this.serverless.cli.log(
-        `Installing production dependencies using ${packageManager}...`
-      )
-      execSync(`${packageManager} install --production`, { cwd: BUILD_FOLDER })
+      this.installProductionDependencies(BUILD_FOLDER)
       return
     }
 
