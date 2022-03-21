@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/GuilhermeCunha/serverless-plugin-typescript/compare/v2.1.1...v2.4.0) (2022-03-21)
+
+
+### Features
+
+* adding logic to yarn install production ([ce19bff](https://github.com/GuilhermeCunha/serverless-plugin-typescript/commit/ce19bff2cd7be39001124bc87f87698cc9af79e7))
+* adding more complete example ([d7b6343](https://github.com/GuilhermeCunha/serverless-plugin-typescript/commit/d7b634356888476522c806ff9ebbdb55556d9973))
+* changing package name ([44eb2f1](https://github.com/GuilhermeCunha/serverless-plugin-typescript/commit/44eb2f14e6705cf1c512ee6f096111911a9353be))
+* installing only production dependencies during package ([9ca45e8](https://github.com/GuilhermeCunha/serverless-plugin-typescript/commit/9ca45e8f541979aafa19a087143aaf35abd9de15))
+* reading packageManager from packageJson ([55847ce](https://github.com/GuilhermeCunha/serverless-plugin-typescript/commit/55847cea42280fefbdd97f0dbc0d9cb00d124cef))
+
 ## [2.3.0](https://github.com/GuilhermeCunha/serverless-plugin-typescript/compare/v2.1.1...v2.3.0) (2022-03-21)
 
 
