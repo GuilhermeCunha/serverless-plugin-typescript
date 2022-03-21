@@ -230,11 +230,14 @@ export class TypeScriptPlugin {
   }
 
   getPackageManager() {
-    if (fs.existsSync(path.resolve('yarn.lock'))) {
+    const { packageManager } = JSON.parse(
+      fs.readFileSync(path.resolve('package.json'), 'utf8'),
+    )
+    if ((packageManager && packageManager.includes('yarn')) || fs.existsSync(path.resolve('yarn.lock'))) {
       return 'yarn'
     }
 
-    if (fs.existsSync(path.resolve('package-lock.json'))) {
+    if ((packageManager && packageManager.includes('npm')) || fs.existsSync(path.resolve('package-lock.json'))) {
       return 'npm'
     }
 
